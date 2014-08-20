@@ -23,7 +23,7 @@ $(document).ready(function(){
         if( AJAX_req.readyState == 4 && AJAX_req.status == 200 )
         {
             var questions = JSON.parse( AJAX_req.responseText );
-            document.write( questions.name );
+            document.write( response.name );
         }
     }
     AJAX_req.send();
