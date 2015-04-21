@@ -1,4 +1,4 @@
- var questions = [
+ /*var questions = [
       {q: "What is the capital of Japan?",     choices: ["Osaka", "Tokyo", "Kyoto"],         answer: 1},
       {q: "What is the capital of Australia?", choices: ["Sydney", "Melbourne", "Canberra"], answer: 2},
       {q: "What is the capital of Slovakia?",  choices: ["Bratislava", "Kosice", "Nitra"],   answer: 0},
@@ -12,36 +12,69 @@
     ];
      
 $(document).ready(function(){ 
- function AJAX_JSON_Req( url )
-{
-    var AJAX_req = new XMLHttpRequest();
-    AJAX_req.open( "GET", url, true );
-    AJAX_req.setRequestHeader("Content-type", "application/json");
- 
-    AJAX_req.onreadystatechange = function()
-    {
-        if( AJAX_req.readyState == 4 && AJAX_req.status == 200 )
-        {
-            var questions = JSON.parse( AJAX_req.responseText );
-           
-        }
-    }
-    AJAX_req.send();
-}
- 
-AJAX_JSON_Req( 'js/questions.json' );
-
- 
  
   var count        = 0,
+      username_div = document.getElementById('name'),
       question     = document.getElementById('question'),
+      start        = document.getElementById('start'),
       back         = document.getElementById('back'),
       next         = document.getElementById('next'),
       counter      = document.getElementById('counter'),
       reset        = document.getElementById('reset'),
-      
-      notification = document.getElementById('notification');
-      
+      wrap         = document.getElementById('quiz-wrap'),
+      notification = document.getElementById('notification'),
+      hello        = document.getElementById('hello'),
+      userName     = document.getElementById('username').value;
+
+      question.style.display = 'none';
+      back.style.display = 'none';
+      next.style.display = 'none';
+      reset.style.display = 'none';
+      username_div.style.display = 'none';
+   
+
+   function checkName(){
+    if(sessionStorage.name !== undefined){
+      var username = sessionStorage.name;
+      var username_area = document.createElement('p');
+      var question_choices = document.createTextNode('Welcome, ' + username);
+      hello.appendChild(username_area);
+      username_area.appendChild(question_choices);
+      question.style.display = 'block';
+      back.style.display = 'block';
+      next.style.display = 'block';
+      reset.style.display = 'block';
+      } else {
+      username_div.style.display = '';
+    
+    }
+   }
+
+
+   function click_start_button(){
+    // Display username
+    sessionStorage.name = document.getElementById('username').value;
+    if (check_the_input(sessionStorage.name) !== '') {
+      var username = sessionStorage.name;
+      var username_area = document.createElement('p');
+      var question_choices = document.createTextNode('Welcome, ' + username);
+      hello.appendChild(username_area);
+      username_area.appendChild(question_choices);
+
+      // Display questions
+     
+    }else if(sessionStorage.name == ""){
+      alert('Enter your name');
+      username_div.style.display = 'block';
+      return false;
+    }
+  }
+
+  function check_the_input(str) {
+    return str.replace(/^\s+|\s+$/g,'');
+  } 
+
+
     function generate_question(){
     if (count < questions.length) {
       var generated_q = document.createElement('h3');
@@ -139,9 +172,7 @@ var buttonHandlers = (function () {
 
       evaluate_answer: function(){
         next.onclick = function(){
-        
           scoreFun.answer_and_score();
-       
         }
       },
 
@@ -157,10 +188,115 @@ var buttonHandlers = (function () {
   };
  
 })();
-
+      function beginning() {
+    var start_button = document.getElementById('start');
+    start_button.onclick = function(e){
+      e.preventDefault;
+      click_start_button();
+    };
+  }
+      checkName();
+      beginning();
       generate_question();
       buttonHandlers.evaluate_answer();
       buttonHandlers.back_button();
       buttonHandlers.reset_quiz();
        
 });
+
+var counter = 0;
+
+function DisplayQuestion(){
+  var questionEle = document.getElementById('ques');
+  var question = questions[counter].q;
+  questionEle.appendChild(question);
+}
+DisplayQuestion();
+*/
+
+
+
+
+var questions = [{
+    q: "What is 2*5?",
+    choices: [2, 5, 10, 15, 20],
+    correctAnswer: 2
+}, {
+    q: "What is 3*6?",
+    choices: [3, 6, 9, 12, 18],
+    correctAnswer: 4
+}, {
+    q: "What is 8*9?",
+    choices: [72, 99, 108, 134, 156],
+    correctAnswer: 0
+}, {
+    q: "What is 1*7?",
+    choices: [4, 5, 6, 7, 8],
+    correctAnswer: 3
+}, {
+    q: "What is 8*8?",
+    choices: [20, 30, 40, 50, 64],
+    correctAnswer: 4
+}];
+
+
+
+
+var quiz = document.getElementById("quiz");
+var choicesContainer = document.getElementById('choices');
+var nextButton = document.querySelector('[type=button]');
+
+var questionIndex = 0;
+
+function showQuiz() {
+    var currentQuestion = document.createTextNode(questions[questionIndex].q);
+    quiz.appendChild(currentQuestion);
+}
+
+function showAnswers(){
+    var choicesLength = questions[questionIndex].choices.length;
+    for(var i = 0; i < choicesLength; i++){
+        var generated_label = document.createElement('label');
+        var generated_input = document.createElement('input');
+        choicesContainer.appendChild(generated_label);
+        generated_label.appendChild(generated_input);
+        generated_input.setAttribute("type", "radio");
+        generated_input.setAttribute("name", "choice");
+        generated_input.setAttribute("value", i);
+        generated_input.setAttribute("id", "pick");
+        var choice = document.createTextNode(questions[questionIndex].choices[i]);
+        generated_label.appendChild(choice);
+    }
+}
+
+
+
+
+ function remove_all_childnodes(selected_id){
+      var myNode = selected_id;
+      var targetChild = myNode.firstChild;
+
+      while(targetChild) {
+        myNode.removeChild(targetChild);
+        targetChild = myNode.firstChild;
+      }    
+    }
+
+
+
+nextButton.addEventListener('click', function () {
+    remove_all_childnodes(choicesContainer);
+    questionIndex++;
+    showQuiz();
+    showAnswers();
+  
+});
+
+showQuiz();
+showAnswers();
+
+function scoreFunc(){
+  
+}
+
+

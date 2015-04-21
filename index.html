@@ -1,45 +1,15 @@
 <!DOCTYPE html>
- 
 <html lang="en">
-    <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
-
-    <title>Cover Template for Bootstrap</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="css/cover.css" rel="stylesheet">
-
-    <!-- Just for debugging purposes. Don't actually copy this line! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  <style id="holderjs-style" type="text/css"></style><link type="text/css" rel="stylesheet" href="chrome-extension://cpngackimfmofbokmjmljamhdncknpmg/style.css"><script type="text/javascript" charset="utf-8" src="chrome-extension://cpngackimfmofbokmjmljamhdncknpmg/js/page_context.js"></script>
-  </head>
-
-  <body>
-
-     
-  <section>
- 
-<html>
   <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
     <link href="css/bootstrap.min.css" rel="stylesheet">
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400|Prosto+One' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="css/cover.css" rel="stylesheet">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -48,25 +18,44 @@
   </head>
 
   <body>
+ <!-- <div class="container">
     <section>
- 
-    <div id="wrapper">
-      <div id="start_page">
-        <h1>Geo Quiz</h1>
-        <p>There are 10 questions about world geography</p>
-       
+    
+      <div id="wrapper">
+        <div id="start_page">
+          <h1>Geo Quiz</h1>
+          <p>There are 10 questions about world geography</p>
+        <div id ="name">
+        <form class="form-inline" role="form">
+         <div class="form-group">
+              <input id="username" class="form-control" type="name" name="userame" placeholder="Type Username">
+         </div>
+         <div class="form-group">
+              <button id="start" class="btn btn-default">START</button>
+         </div>
+        </form>
+        </div>
+        <div id="hello"></div>
+        </div>
+        <div id="quiz-wrap">
+          <div id="question"></div>
+          <button id="next">NEXT</button>
+          <button id="back">BACK</button>
+          <button id="reset">RESET</button>
+        </div>
+        <div id="notification"></div>
       </div>
-     
-      <div id="question"></div>
-      <button id="next">NEXT</button>
-      <button id="back">BACK</button>
-      <button id="reset">RESET</button>
-     
-      <div id="notification"></div>
-    </div>
-  </section>
- 
+    </section>
+  </div>
 
+  -->
+
+   
+       <div id="quiz"></div>
+       <div id="choices"></div>
+       <input type="button" value="Next">
+
+  </div>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
